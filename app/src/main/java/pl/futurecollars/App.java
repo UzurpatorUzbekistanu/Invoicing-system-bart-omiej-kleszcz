@@ -14,7 +14,6 @@ import pl.futurecollars.service.InvoiceService;
 public class App {
 
   public static void main(String[] args) {
-
     Database db = new InMemoryDatabase();
     InvoiceService service = new InvoiceService(db);
 
