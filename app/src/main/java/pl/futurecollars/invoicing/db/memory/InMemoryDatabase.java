@@ -34,14 +34,14 @@ public class InMemoryDatabase implements Database {
 
   @Override
   public void update(int id, Invoice updatedInvoice) {
-    if(invoices.containsKey(id)){
+    if (invoices.containsKey(id)) {
       invoices.replace(id, updatedInvoice);
     }
   }
 
   @Override
   public void delete(int id) {
-    if(invoices.containsKey(id)){
+    if (invoices.containsKey(id)) {
       invoices.remove(id);
     }
   }
