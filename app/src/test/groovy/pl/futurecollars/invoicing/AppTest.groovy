@@ -3,7 +3,7 @@
  */
 package pl.futurecollars.invoicing
 
-import pl.futurecollars.App
+
 import spock.lang.Specification
 
 class AppTest extends Specification {

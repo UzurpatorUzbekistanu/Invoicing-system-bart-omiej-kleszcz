@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import lombok.Data;
 import pl.futurecollars.invoicing.db.Database;
 import pl.futurecollars.invoicing.model.Invoice;
 
-@Data
 public class InMemoryDatabase implements Database {
 
   private final Map<Integer, Invoice> invoices = new HashMap<>();
@@ -35,7 +33,7 @@ public class InMemoryDatabase implements Database {
   @Override
   public void update(int id, Invoice updatedInvoice) {
     if (!invoices.containsKey(id)) {
-      throw new IllegalArgumentException("Id "+ id +" does not exist");
+      throw new IllegalArgumentException("Id " + id + " does not exist");
     }
 
     invoices.replace(id, updatedInvoice);
