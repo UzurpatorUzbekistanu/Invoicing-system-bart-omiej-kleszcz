@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.ToString;
 
-@Getter
 @ToString
+@Getter
 public enum Vat {
 
   VAT_23(23),
@@ -20,4 +20,5 @@ public enum Vat {
   Vat(int rate) {
     this.rate = BigDecimal.valueOf(rate);
   }
+
 }
