@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SpringFoxConfig {
+
   @Bean
   public OpenApiCustomizer openApiCustomizer() {
     return openApi -> {
