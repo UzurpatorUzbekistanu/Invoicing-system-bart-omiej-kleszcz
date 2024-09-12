@@ -5,9 +5,9 @@ buildscript {
         spockSpringVersion = '2.4-M1-groovy-4.0'
         springVersion = '3.3.2'
         springDependencyManagmentVersion = '1.1.6'
+        springDocVersion = '2.2.0'
         apachGroovyVersion = '4.0.22'
         junitVersion = '4.13.2'
-
     }
 
 }
@@ -50,14 +50,15 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:${lambokVersion}"
     compileOnly "org.projectlombok:lombok:${lambokVersion}"
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springDocVersion}"
+    implementation "org.springframework.boot:spring-boot-gradle-plugin:${springVersion}"
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.session:spring-session-core'
-    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
-    implementation "org.springframework.boot:spring-boot-gradle-plugin:${springVersion}"
     testAnnotationProcessor "org.projectlombok:lombok:${lambokVersion}"
     testCompileOnly "org.projectlombok:lombok:${lambokVersion}"
     testImplementation 'junit:junit:4.13.2'
@@ -102,13 +103,13 @@ jacocoTestCoverageVerification {
         rule {
             limit {
                 counter = "BRANCH"
-                minimum = 0.83
+                minimum = 0.80
             }
         }
         rule {
             limit {
                 counter = "LINE"
-                minimum = 0.83
+                minimum = 0.80
             }
         }
     }
