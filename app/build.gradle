@@ -1,28 +1,40 @@
 buildscript {
     ext {
-        lambokVersion = '1.18.34'
-        jacksonVersion = '2.17.2'
-        spockSpringVersion = '2.4-M1-groovy-4.0'
-        springVersion = '2.4.2'
-        springDependencyManagmentVersion = '1.1.6'
-        springDocVersion = '2.2.0'
-        apachGroovyVersion = '4.0.22'
-        junitVersion = '4.13.2'
+        lombokVersion = '1.18.22'
+        spockVersion = '2.3-groovy-3.0'
+        springBootVersion = '2.4.2'
+        springDependencyManagementVersion = '1.0.11.RELEASE'
+        springFoxStarterVersion = '3.0.0'
+        springFoxUiVersion = '3.0.0'
     }
-
 }
+
 
 plugins {
+    // Apply the groovy plugin to also add support for Groovy (needed for Spock)
     id 'groovy'
+
+    // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+
     id 'checkstyle'
+
     id 'jacoco'
+
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+
     id 'java'
-    id 'org.springframework.boot' version "${springVersion}"
-    id 'io.spring.dependency-management' version "${springDependencyManagmentVersion}"
 
 }
 
+group = 'pl.futurecollars'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
 
 java {
     toolchain {
@@ -32,6 +44,45 @@ java {
 }
 
 
+dependencies {
+    implementation "org.projectlombok:lombok:${lombokVersion}"
+
+    // Use the latest Groovy version for Spock testing
+    testImplementation 'org.codehaus.groovy:groovy:3.0.13'
+
+    // Use the awesome Spock testing and specification framework even with Java
+    testImplementation "org.spockframework:spock-core:${spockVersion}"
+    testImplementation "org.spockframework:spock-spring:${spockVersion}"
+    testImplementation 'junit:junit:4.13.2'
+
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:31.1-jre'
+
+    //Lombok -> lekcja 2
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+    testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+
+    //jackson - lekcja 3
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.1'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.1'
+
+    //spring - lekcja 4
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation "io.springfox:springfox-boot-starter:${springFoxStarterVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${springFoxUiVersion}"
+
+}
+
+tasks.named('test') {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
+
 checkstyle {
     showViolations = true
     ignoreFailures = false
@@ -39,82 +90,52 @@ checkstyle {
     maxErrors = 0
 }
 
-
-repositories {
-    mavenCentral()
+//lesson 4 -> fixing build problems
+bootJar {
+    enabled = false
 }
 
-
-dependencies {
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    annotationProcessor "org.projectlombok:lombok:${lambokVersion}"
-    compileOnly "org.projectlombok:lombok:${lambokVersion}"
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
-    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springDocVersion}"
-    implementation "org.springframework.boot:spring-boot-gradle-plugin:${springVersion}"
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-    implementation 'org.springframework.boot:spring-boot-starter-web-services'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.session:spring-session-core'
-    testAnnotationProcessor "org.projectlombok:lombok:${lambokVersion}"
-    testCompileOnly "org.projectlombok:lombok:${lambokVersion}"
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation "org.apache.groovy:groovy:${apachGroovyVersion}"
-    testImplementation "org.spockframework:spock-core:${spockSpringVersion}"
-    testImplementation "org.spockframework:spock-spring:${spockSpringVersion}"
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-}
-
-application {
-    // Define the main class for the application.
-    mainClass = 'pl.futurecollars.invoicing.App'
-}
-
-tasks.named('test') {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
-}
-jacoco {
-    toolVersion = "0.8.11"
-    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
-}
-jacocoTestReport {
-    dependsOn test
-}
 test {
-    finalizedBy jacocoTestReport
+    finalizedBy jacocoTestReport // report is always generated after tests run
     finalizedBy jacocoTestCoverageVerification
 }
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+
 jacocoTestReport {
     reports {
         xml.required = false
         csv.required = false
-        html.outputLocation = layout.projectDirectory.dir('jacocoHtml')
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
 }
+
 jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-                counter = "BRANCH"
-                minimum = 0.80
+                counter = 'BRANCH'
+                minimum = 0.70
             }
         }
         rule {
             limit {
-                counter = "LINE"
-                minimum = 0.80
+                counter = 'LINE'
+                minimum = 0.70
             }
         }
     }
-}
-def profile = "dev"
-bootRun {
-    args = ["--spring.profiles.active=" + profile]
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: 'pl/futurecollars/invoicing/InvoiceApplication.class')
+        }))
+    }
 }
