@@ -1,6 +1,6 @@
 package pl.futurecollars.invoicing.model;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,13 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Company {
 
-  @Schema(description = "Tax id number", example = "123-123-123")
+  @ApiModelProperty(value = "Tax id number", required = true, example = "123-123-123")
   private String taxIdentification;
-
-  @Schema(description = "Company address", example = "Abbey Road str. 123, 11-111 London")
+  @ApiModelProperty(value = "Company address", required = true, example = "Abbey Road str. 123, 11-111 London")
   private String address;
 
-  @Schema(description = "Company name", example = "Invoice house Company")
+  @ApiModelProperty(value = "Company name", required = true, example = "Invoice house Company")
   private String name;
 
   public Company(String taxIdentification, String address, String name) {

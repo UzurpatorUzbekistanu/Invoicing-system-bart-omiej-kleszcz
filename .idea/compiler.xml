@@ -7,13 +7,12 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
         </processorPath>
-        <module name="Invoicing-system-bartlomiej-kleszcz.app.main" />
-        <module name="app.Invoicing-system-bartlomiej-kleszcz.app.test" />
+        <module name="pl.futurecollars.Invoicing-system-bartlomiej-kleszcz.test" />
+        <module name="Invoicing-system-bartlomiej-kleszcz.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="14">
       <module name="Invoicing-system-bart-omiej-kleszcz.Invoicing-system-bartlomiej-kleszcz.test" target="17" />
-      <module name="Invoicing-system-bartlomiej-kleszcz.main" target="17" />
       <module name="pl.futurecollars.Invoicing-system-bartlomiej-kleszcz.app.test" target="17" />
     </bytecodeTargetLevel>
   </component>
