@@ -1,5 +1,6 @@
 package pl.futurecollars.invoicing.controller
 
+import pl.futurecollars.invoicing.controller.AbstractControllerTest
 import spock.lang.Unroll
 
 @Unroll
