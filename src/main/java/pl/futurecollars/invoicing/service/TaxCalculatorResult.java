@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-@AllArgsConstructor
 @Builder
 @Data
 public class TaxCalculatorResult {
@@ -30,35 +29,35 @@ public class TaxCalculatorResult {
 
   @JsonCreator
   public TaxCalculatorResult(
-      @JsonProperty("income") double income,
-      @JsonProperty("costs") double costs,
-      @JsonProperty("incomeMinusCosts") double incomeMinusCosts,
-      @JsonProperty("pensionInsurance") double pensionInsurance,
-      @JsonProperty("incomeMinusCostsMinusPensionInsurance") double incomeMinusCostsMinusPensionInsurance,
-      @JsonProperty("incomeMinusCostsMinusPensionInsuranceRounded") double incomeMinusCostsMinusPensionInsuranceRounded,
-      @JsonProperty("incomeTax") double incomeTax,
-      @JsonProperty("healthInsurancePaid") double healthInsurancePaid,
-      @JsonProperty("healthInsuranceToSubtract") double healthInsuranceToSubtract,
-      @JsonProperty("incomeTaxMinusHealthInsurance") double incomeTaxMinusHealthInsurance,
-      @JsonProperty("finalIncomeTax") double finalIncomeTax,
-      @JsonProperty("collectedVat") double collectedVat,
-      @JsonProperty("paidVat") double paidVat,
-      @JsonProperty("vatToReturn") double vatToReturn
+      @JsonProperty("income") BigDecimal income,
+      @JsonProperty("costs") BigDecimal costs,
+      @JsonProperty("incomeMinusCosts") BigDecimal incomeMinusCosts,
+      @JsonProperty("pensionInsurance") BigDecimal pensionInsurance,
+      @JsonProperty("incomeMinusCostsMinusPensionInsurance") BigDecimal incomeMinusCostsMinusPensionInsurance,
+      @JsonProperty("incomeMinusCostsMinusPensionInsuranceRounded") BigDecimal incomeMinusCostsMinusPensionInsuranceRounded,
+      @JsonProperty("incomeTax") BigDecimal incomeTax,
+      @JsonProperty("healthInsurancePaid") BigDecimal healthInsurancePaid,
+      @JsonProperty("healthInsuranceToSubtract") BigDecimal healthInsuranceToSubtract,
+      @JsonProperty("incomeTaxMinusHealthInsurance") BigDecimal incomeTaxMinusHealthInsurance,
+      @JsonProperty("finalIncomeTax") BigDecimal finalIncomeTax,
+      @JsonProperty("collectedVat") BigDecimal collectedVat,
+      @JsonProperty("paidVat") BigDecimal paidVat,
+      @JsonProperty("vatToReturn") BigDecimal vatToReturn
   ) {
-    this.income = BigDecimal.valueOf(income);
-    this.costs = BigDecimal.valueOf(costs);
-    this.incomeMinusCosts = BigDecimal.valueOf(incomeMinusCosts);
-    this.pensionInsurance = BigDecimal.valueOf(pensionInsurance);
-    this.incomeMinusCostsMinusPensionInsurance = BigDecimal.valueOf(incomeMinusCostsMinusPensionInsurance);
-    this.incomeMinusCostsMinusPensionInsuranceRounded = BigDecimal.valueOf(incomeMinusCostsMinusPensionInsuranceRounded);
-    this.incomeTax = BigDecimal.valueOf(incomeTax);
-    this.healthInsurancePaid = BigDecimal.valueOf(healthInsurancePaid);
-    this.healthInsuranceToSubtract = BigDecimal.valueOf(healthInsuranceToSubtract);
-    this.incomeTaxMinusHealthInsurance = BigDecimal.valueOf(incomeTaxMinusHealthInsurance);
-    this.finalIncomeTax = BigDecimal.valueOf(finalIncomeTax);
-    this.collectedVat = BigDecimal.valueOf(collectedVat);
-    this.paidVat = BigDecimal.valueOf(paidVat);
-    this.vatToReturn = BigDecimal.valueOf(vatToReturn);
+    this.income = income;
+    this.costs = costs;
+    this.incomeMinusCosts = incomeMinusCosts;
+    this.pensionInsurance = pensionInsurance;
+    this.incomeMinusCostsMinusPensionInsurance = incomeMinusCostsMinusPensionInsurance;
+    this.incomeMinusCostsMinusPensionInsuranceRounded = incomeMinusCostsMinusPensionInsuranceRounded;
+    this.incomeTax = incomeTax;
+    this.healthInsurancePaid = healthInsurancePaid;
+    this.healthInsuranceToSubtract = healthInsuranceToSubtract;
+    this.incomeTaxMinusHealthInsurance = incomeTaxMinusHealthInsurance;
+    this.finalIncomeTax = finalIncomeTax;
+    this.collectedVat = collectedVat;
+    this.paidVat = paidVat;
+    this.vatToReturn = vatToReturn;
   }
 
 }
