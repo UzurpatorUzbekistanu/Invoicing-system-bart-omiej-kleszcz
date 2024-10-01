@@ -34,7 +34,6 @@ plugins {
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
 
     id 'java'
-
 }
 
 group = 'pl.futurecollars'
@@ -89,7 +88,6 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql:42.2.19'
     runtimeOnly 'com.h2database:h2:1.4.200'
     implementation "org.flywaydb:flyway-core:7.6.0"
-
 }
 
 tasks.named('test') {
