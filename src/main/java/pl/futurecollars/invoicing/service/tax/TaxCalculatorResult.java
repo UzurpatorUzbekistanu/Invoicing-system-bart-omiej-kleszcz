@@ -1,4 +1,4 @@
-package pl.futurecollars.invoicing.service;
+package pl.futurecollars.invoicing.service.tax;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -58,5 +58,5 @@ public class TaxCalculatorResult {
     this.paidVat = paidVat;
     this.vatToReturn = vatToReturn;
   }
-
 }
+
