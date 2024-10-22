@@ -1,12 +1,6 @@
 server:
   port: 7777
 
-spring:
-  profiles:
-    active: memory
-  flyway:
-    enabled: false
-
 logging:
   level:
     org:
@@ -16,3 +10,14 @@ logging:
       futurecollars:
         invoicing: INFO
         invoicing.db: DEBUG
+
+spring:
+  profiles:
+    active: memory
+  flyway:
+    enabled: false
+
+invoicing-system:
+  allowedOrigins: http://localhost:4200
+  csrf:
+    disable: true
