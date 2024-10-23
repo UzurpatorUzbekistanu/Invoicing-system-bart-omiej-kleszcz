@@ -22,13 +22,15 @@ export class AppComponent implements OnInit {
   newCompany: Company = new Company(0, '', '', '', 0, 0);
 
   addCompany() {
-    this.companyService.addCompany(this.newCompany).subscribe(() => {
+    this.companyService.addCompany(this.newCompany).subscribe(id => {
+      this.newCompany.id = id;
       this.companies.push(this.newCompany);
       this.newCompany = new Company(0, '', '', '', 0, 0);
     });
   }
 
   deleteCompany(companyToDelete: Company) {
+    console.log("Deleting company with ID:", companyToDelete.id);
     this.companyService.deleteCompany(companyToDelete.id).subscribe(() => {
       this.companies = this.companies.filter(company => company !== companyToDelete);
     });
