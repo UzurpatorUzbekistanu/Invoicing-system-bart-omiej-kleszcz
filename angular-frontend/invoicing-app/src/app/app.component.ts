@@ -9,6 +9,8 @@ import { CompanyService } from './company.service';
 })
 export class AppComponent implements OnInit {
 
+   title = 'invoicing-app';
+
   companies: Company[] = [];
 
   constructor(private companyService: CompanyService) {}
