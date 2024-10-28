@@ -36,4 +36,5 @@ public interface CompanyApi {
   @ApiOperation(value = "Update company with given id")
   @PutMapping("/{id}")
   ResponseEntity<?> update(@PathVariable int id, @RequestBody Company company);
+
 }
