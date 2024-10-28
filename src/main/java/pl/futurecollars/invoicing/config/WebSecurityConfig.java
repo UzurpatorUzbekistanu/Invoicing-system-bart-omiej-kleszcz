@@ -22,10 +22,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-        .httpBasic() // wymusza logowanie Basic Auth
+        .httpBasic()
         .and()
         .authorizeRequests()
-        .anyRequest().authenticated() // wymaga logowania dla każdej ścieżki
+        .anyRequest().authenticated()
         .and()
         .addFilterBefore(corsFilter, ChannelProcessingFilter.class);
 
@@ -35,6 +35,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       http.csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()));
     }
   }
-
 
 }
