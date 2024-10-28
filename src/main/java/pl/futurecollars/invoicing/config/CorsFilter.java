@@ -18,6 +18,7 @@ public class CorsFilter extends OncePerRequestFilter {
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
       throws ServletException, IOException {
+
     addHeaderIfAbsent("Access-Control-Allow-Origin", allowedOrigins, response);
     addHeaderIfAbsent("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS", response);
     addHeaderIfAbsent("Access-Control-Max-Age", "3600", response);
