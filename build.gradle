@@ -93,6 +93,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     implementation "org.mongodb:mongo-java-driver:${mongoVersion}"
+
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation "org.springframework.security:spring-security-test"
 }
 
 tasks.named('test') {
@@ -152,7 +155,9 @@ jacocoTestCoverageVerification {
 
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: 'pl/futurecollars/invoicing/InvoiceApplication.class')
+            fileTree(dir: it, exclude: [
+                    'pl/futurecollars/invoicing/InvoiceApplication.class',
+                    'pl/futurecollars/invoicing/config/*'])
         }))
     }
 }

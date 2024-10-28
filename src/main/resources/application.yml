@@ -16,8 +16,12 @@ spring:
     active: memory
   flyway:
     enabled: false
+  security:
+    user:
+      name: bartek
+      password: password123%
 
 invoicing-system:
   allowedOrigins: http://localhost:4200
   csrf:
-    disable: true
+    disable: false
